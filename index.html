@@ -29,6 +29,7 @@ select, button {
   border: solid 1px black;
   border-radius: 50%;
   margin: 1rem;
+  cursor: pointer;
 }
 
 .sm {
@@ -75,13 +76,15 @@ select, button {
       <button>create circle</button>
     </form>
     <div id='container'>
+      <div class='lg green'></div>
+      <div class='red md'></div>
+      <div class='sm blue'></div>
     </div>
 <script>
   const form = document.querySelector('form');
   const colorSelector = document.querySelector('#colorSelector');
   const sizeSelector = document.querySelector('#sizeSelector');
   const container = document.querySelector('#container');
-  console.log(container);
 
   form.addEventListener('submit', (ev)=> {
     ev.preventDefault();
@@ -91,9 +94,13 @@ select, button {
     circle.classList.add(color);
     circle.classList.add(size);
     container.appendChild(circle);
-    circle.addEventListener('click', (ev)=> {
-      circle.parentNode.removeChild(circle);
-    });
+  });
+
+  container.addEventListener('click', (ev)=> {
+    console.log(ev.target.tagName);
+    if(ev.target.id !== 'container'){
+      ev.target.parentNode.removeChild(ev.target);
+    }
   });
 </script>
   </body>
